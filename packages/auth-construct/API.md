@@ -199,6 +199,7 @@ export type VerificationEmailWithCode = {
     verificationEmailStyle?: 'CODE';
     verificationEmailBody?: (createCode: () => string) => string;
     verificationEmailSubject?: string;
+    passwordlessLogin?: boolean;
 };
 
 // @public (undocumented)

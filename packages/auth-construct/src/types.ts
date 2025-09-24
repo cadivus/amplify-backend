@@ -49,6 +49,11 @@ export type VerificationEmailWithCode = {
    * The verification email subject.
    */
   verificationEmailSubject?: string;
+  /**
+   * Enable passwordless login.
+   * @default false
+   */
+  passwordlessLogin?: boolean;
 };
 /**
  * Email login settings object.

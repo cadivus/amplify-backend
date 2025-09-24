@@ -140,6 +140,7 @@
   "orchestrator",
   "outdir",
   "passthrough",
+  "passwordless",
   "pathname",
   "pipelined",
   "pnpm",

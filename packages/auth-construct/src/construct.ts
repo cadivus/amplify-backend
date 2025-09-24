@@ -576,6 +576,13 @@ export class AmplifyAuth
       }
     }
     const smsConfiguration = this.getSmsConfiguration(props.senders?.sms);
+
+    const emailOtp =
+      typeof props.loginWith.email === 'object' &&
+      'passwordlessLogin' in props.loginWith.email
+        ? (props.loginWith.email.passwordlessLogin ?? false)
+        : false;
+
     const userPoolProps: UserPoolProps = {
       signInCaseSensitive: DEFAULTS.SIGN_IN_CASE_SENSITIVE,
       signInAliases: {
@@ -609,6 +616,12 @@ export class AmplifyAuth
               sesRegion: Stack.of(this).region,
             })
           : undefined,
+      signInPolicy: {
+        allowedFirstAuthFactors: {
+          password: true, // Has to be always true
+          emailOtp: emailOtp,
+        },
+      },
       smsRole: smsConfiguration?.snsCallerArn,
       smsRoleExternalId: smsConfiguration?.externalId,
       snsRegion: smsConfiguration?.snsRegion,
